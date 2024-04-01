@@ -1,24 +1,16 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Input from './Components/Input/Input';
+import List from './Components/List/List';
 
 function App() {
+  const [students, setStudents] = useState(JSON.parse(localStorage.getItem('students')) || []);
+  const [loading, setLoading] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Input setLoading={setLoading} students={students} setStudents={setStudents}/>
+      <List loading={loading} students={students} setStudents={setStudents} />
+    </>
   );
 }
 
